@@ -60,6 +60,8 @@ sda      30G  disk
 
 sdb      10G  disk
 ```
+<img width="510" height="262" alt="Screenshot 2026-11-01 132253" src="https://github.com/user-attachments/assets/c2f75d93-19bf-42be-97db-f68cb59ceaaa" />
+
 
 Before making storage changes, I verified that `/dev/sdb` was the newly
 added disk and that `/dev/sda` contained the operating system.
@@ -99,6 +101,7 @@ The storage layout now included:
 `/dev/sdb` represents the disk, while `/dev/sdb1` represents the first
 partition created on that disk.
 
+
 ---
 
 ## 3. Create the Filesystem
@@ -117,6 +120,8 @@ I then verified the filesystem information with:
 ```bash
 lsblk -f
 ```
+<img width="1107" height="167" alt="Screenshot 2026-11-01 140611" src="https://github.com/user-attachments/assets/9be28e96-1415-412f-8910-2cfca8b9e3c5" />
+
 
 The partition now reported:
 
@@ -297,6 +302,8 @@ df -h /data
 ```bash
 ls -l /data
 ```
+<img width="471" height="216" alt="Screenshot 2026-11-02 082843" src="https://github.com/user-attachments/assets/8eb5dc91-d02d-4d2e-ad1e-ffb715bf89ca" />
+
 
 The results confirmed that:
 
