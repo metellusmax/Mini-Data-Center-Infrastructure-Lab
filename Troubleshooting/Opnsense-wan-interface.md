@@ -55,6 +55,8 @@ After booting OPNsense, the console showed:
 LAN (em0) -> 192.168.1.1/24
 WAN (em1) ->
 ```
+<img width="688" height="349" alt="image" src="https://github.com/user-attachments/assets/4e412c60-d146-4291-a207-84a2ddc29c10" />
+
 
 The LAN interface had an IPv4 address, but the WAN interface did not.
 
@@ -81,6 +83,8 @@ and:
 ```bash
 ifconfig em1
 ```
+<img width="788" height="430" alt="Screenshot 2026-10-30 094551" src="https://github.com/user-attachments/assets/c359fe1c-6694-45d0-b491-5caf4f34a38c" />
+
 
 Both interfaces showed an active link.
 
@@ -147,6 +151,8 @@ This confirmed that a VMware NAT network with DHCP was available.
 
 The problem was therefore not simply that the expected WAN-side network
 did not exist.
+
+<img width="718" height="706" alt="Screenshot 2026-10-30 101253" src="https://github.com/user-attachments/assets/fd707671-aa98-4cd4-951a-dd8b9a3128c1" />
 
 ---
 
@@ -258,6 +264,8 @@ WAN (em1)
 192.168.3.133/24
 DHCP
 ```
+<img width="620" height="212" alt="Screenshot 2026-10-30 102819" src="https://github.com/user-attachments/assets/fd4d3364-13fa-45dc-bd44-e56d3e1937d4" />
+
 
 The WAN interface receiving an address from the `192.168.3.0/24`
 VMware NAT network confirmed that the interface mapping had been
