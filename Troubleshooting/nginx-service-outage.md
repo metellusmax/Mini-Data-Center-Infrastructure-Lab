@@ -54,7 +54,10 @@ The first test checked basic connectivity to the Ubuntu server:
 ping 192.168.1.104
 ```
 
+
 The server successfully responded to the ICMP requests.
+<img width="797" height="270" alt="Screenshot 2026-10-31 143407" src="https://github.com/user-attachments/assets/456d27aa-12f9-4303-81af-3c978d26b768" />
+
 
 This established that:
 
@@ -74,6 +77,8 @@ The next step was testing the port used by HTTP:
 ```powershell
 Test-NetConnection 192.168.1.104 -Port 80
 ```
+<img width="785" height="292" alt="Screenshot 2026-10-31 143855" src="https://github.com/user-attachments/assets/33224578-c3fb-420f-a24c-893beca73d5f" />
+
 
 The test showed that the host was reachable but TCP port 80 was not.
 
@@ -109,6 +114,8 @@ The service status showed:
 ```text
 Active: inactive (dead)
 ```
+<img width="1686" height="248" alt="Screenshot 2026-10-31 144350" src="https://github.com/user-attachments/assets/656c3d7d-0550-4d7c-9869-52b1633cb84a" />
+
 
 This confirmed that the Ubuntu server itself remained online while the
 Nginx web service was not running.
@@ -146,6 +153,7 @@ Nginx now reported:
 ```text
 Active: active (running)
 ```
+<img width="1693" height="472" alt="Screenshot 2026-10-31 150205" src="https://github.com/user-attachments/assets/e34f2700-91ff-48d3-a4d6-d314dc9ec4e0" />
 
 ---
 
@@ -186,6 +194,9 @@ StatusDescription : OK
 ```
 
 The Nginx webpage was also returned.
+
+<img width="1856" height="983" alt="Screenshot 2026-10-31 151043" src="https://github.com/user-attachments/assets/78408f09-a193-4dc1-bbc8-73e501b62d8f" />
+
 
 This confirmed that:
 
