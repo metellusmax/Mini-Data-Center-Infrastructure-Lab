@@ -40,170 +40,95 @@ infrastructure.
 
 ## Current Environment
 
-### OPNsense Firewall / Router
+| System | Role | Network |
+|---|---|---|
+| OPNsense | Router, firewall, DNS, NAT | WAN / ADMIN / SERVER |
+| `admin-ws01` | Windows administrative workstation | ADMIN |
+| `ubuntu-srv01` | Linux application/server workload | SERVER |
 
-Provides routing and network services between the lab LAN and VMware
-NAT network.
+### Key Technologies
 
-Current responsibilities include:
-
-- LAN/WAN routing
-- DHCP
-- DNS
-- NAT
-- Internet connectivity for lab systems
-
-### ubuntu-srv01
-
-Ubuntu Server providing Linux administration and server-service
-practice.
-
-Current configuration includes:
-
+- VMware Workstation
+- OPNsense
+- Windows 11 Enterprise Evaluation
 - Ubuntu Server 24.04
 - OpenSSH
 - Nginx
-- Secondary virtual storage
-- ext4 filesystem
-- Persistent `/data` mount
-
-### admin-ws01
-
-Windows 11 administrative workstation used to remotely manage and
-validate services within the lab.
-
-Current tools and functionality include:
-
+- Linux ext4 storage
 - PowerShell
-- SSH client
-- ICMP connectivity testing
-- TCP port testing
-- DNS testing
-- Remote Ubuntu administration
 
 ## Current Architecture
 
- VMware Host
+The lab has evolved from a single flat LAN into separate ADMIN and
+SERVER networks routed and protected by OPNsense.
 
-                 Internet
-                    |
-                    |
-             VMware NAT / VMnet8
-              192.168.3.0/24
-                    |
-                   WAN
-                    |
-          OPNsense Firewall / Router
-          WAN: 192.168.3.133/24
-          LAN: 192.168.1.1/24
-                    |
-                   LAN
-                    |
-             VMnet2 - Lab LAN
-              192.168.1.0/24
-                  /    \
-                 /      \
-                /        \
-        admin-ws01      ubuntu-srv01
-       Windows 11       Ubuntu Server
-     192.168.1.111     192.168.1.104
-           |                 |
-       PowerShell         SSH / Nginx
-       SSH Client             |
-                              |
-                       Secondary Disk
-                         /dev/sdb
-                          10 GB
-                            |
-                           ext4
-                            |
-                          /data
+| Zone | VMware Network | Subnet | OPNsense Interface |
+|---|---|---|---|
+| WAN | VMnet8 | `192.168.3.0/24` | `192.168.3.133` |
+| ADMIN | VMnet2 | `192.168.1.0/24` | `192.168.1.1` |
+| SERVER | VMnet3 | `10.10.20.0/24` | `10.10.20.1` |
 
+**Key systems**
 
+- `admin-ws01` - `192.168.1.111/24`
+- `ubuntu-srv01` - `10.10.20.10/24`
 
-The physical computer serves only as the VMware Workstation host.
-Administration and testing within the documented lab are performed
-from `admin-ws01`.
+Traffic between the ADMIN and SERVER subnets is routed through OPNsense
+and controlled using stateful firewall policies.
 
+➡️ [View Current Architecture](Architecture/Current-Architecture.md)
+
+ 
+## Project Documentation
+
+Detailed implementation and troubleshooting documentation is maintained
+separately so the main README can remain concise and easy to navigate.
+
+### Architecture
+
+- [Current Lab Architecture](Architecture/Current-Architecture.md)
+
+### Linux Administration
+
+- [Linux Secondary Storage Configuration](Linux/Storage-Configuration.md)
+
+### Troubleshooting
+
+- [OPNsense WAN Interface Troubleshooting](Troubleshooting/OPNsense-WAN-Interface.md)
+- [Nginx Web Service Outage](Troubleshooting/Nginx-Service-Outage.md)
+  
 ## Completed Work
 
-- [x] Deployed OPNsense
-- [x] Configured WAN and LAN interfaces
-- [x] Configured VMware virtual networking
-- [x] Validated DHCP, DNS, NAT, and Internet connectivity
-- [x] Deployed Ubuntu Server
-- [x] Configured OpenSSH
-- [x] Installed and validated Nginx
+### Virtualization & Infrastructure
+- [x] Built multi-VM environment in VMware Workstation
+- [x] Deployed OPNsense firewall/router
 - [x] Deployed Windows administrative workstation
-- [x] Validated SSH remote administration
-- [x] Validated TCP/22 and TCP/80 connectivity
-- [x] Added a secondary virtual disk to Ubuntu
-- [x] Partitioned secondary storage
-- [x] Created an ext4 filesystem
-- [x] Mounted additional storage at `/data`
-- [x] Configured persistent mounting using `/etc/fstab`
-- [x] Validated storage persistence after reboot
+- [x] Deployed Ubuntu Server
 
-## Troubleshooting Experience
+### Networking
+- [x] Configured WAN connectivity through VMware NAT
+- [x] Configured DHCP, DNS, and NAT
+- [x] Created dedicated ADMIN and SERVER networks
+- [x] Configured inter-subnet routing through OPNsense
+- [x] Validated Internet and DNS connectivity across segmented networks
 
-### OPNsense WAN Interface
+### Firewall Policy
+- [x] Allowed ADMIN → SERVER SSH (TCP/22)
+- [x] Allowed ADMIN → SERVER HTTP (TCP/80)
+- [x] Blocked other ADMIN → SERVER traffic
+- [x] Blocked SERVER-initiated connections into ADMIN
+- [x] Validated stateful firewall behavior
 
-During the initial deployment, the OPNsense WAN interface failed to
-receive an IPv4 address through DHCP.
-
-Troubleshooting included:
-
-1. Verifying virtual NIC link status.
-2. Confirming interface assignments inside OPNsense.
-3. Verifying WAN DHCP configuration.
-4. Checking VMware NAT and DHCP configuration.
-5. Comparing VMware virtual NIC MAC addresses against OPNsense
-   interfaces.
-6. Identifying an incorrect virtual NIC-to-network mapping.
-7. Correcting the VMware network assignments.
-8. Confirming that the WAN interface successfully received an address.
-
-This exercise reinforced the importance of validating interface
-identity rather than assuming hypervisor adapter numbering matches
-operating-system interface numbering.
-
-### Incident 001: Web Service Unavailable
-
-A simulated service outage was created on `ubuntu-srv01`.
-
-Testing confirmed that the server remained reachable while TCP/80 was
-unavailable. Investigation of the Nginx service found that the service
-was inactive.
-
-The service was restored and validated using TCP connectivity testing
-and an HTTP request.
-
-**Key takeaway:** Host availability does not guarantee application or
-service availability.
-
-## Added Linux Storage
-
-A second 10 GB virtual disk was added to `ubuntu-srv01`.
-
-The storage workflow included:
-
-1. Identifying the new block device with `lsblk`.
-2. Creating a partition using `fdisk`.
-3. Creating an ext4 filesystem.
-4. Creating `/data` as the mount point.
-5. Mounting the filesystem.
-6. Verifying capacity with `df`.
-7. Identifying the filesystem UUID.
-8. Adding the filesystem to `/etc/fstab`.
-9. Testing the configuration.
-10. Rebooting and validating the persistent mount.
-
-This exercise helped reinforce the relationship between:
-
-**Disk → Partition → Filesystem → Mount Point → Persistent Storage**
+### Linux Administration
+- [x] Configured SSH remote administration
+- [x] Deployed Nginx
+- [x] Added and partitioned secondary storage
+- [x] Created ext4 filesystem
+- [x] Configured persistent `/data` mount
 
 
-## Project Progress
+
+## Project Roadmap
 
 ### Phase 1 - Core Infrastructure ✅
 - [x] OPNsense firewall/router
@@ -212,39 +137,50 @@ This exercise helped reinforce the relationship between:
 - [x] DHCP, DNS, NAT, and Internet connectivity
 - [x] SSH and Nginx
 
-### Phase 2 - Linux Server & Storage ✅
+### Phase 2 - Linux Server Administration & Storage ✅
+- [x] Linux resource and system inspection
 - [x] Secondary virtual disk
 - [x] Disk partitioning
 - [x] ext4 filesystem
-- [x] `/data` mount
-- [x] Persistent mounting through `/etc/fstab`
+- [x] `/data` mount point
+- [x] Persistent mounting with `/etc/fstab`
+- [x] Reboot validation
 
 ### Phase 3 - Network Segmentation ✅
 - [x] Dedicated ADMIN network
 - [x] Dedicated SERVER network
-- [x] Additional OPNsense interface
+- [x] Additional OPNsense network interface
 - [x] Static server addressing
 - [x] Inter-subnet routing
+- [x] Internet and DNS validation
 
 ### Phase 4 - Firewall Policy ✅
-- [x] ADMIN-to-SERVER access controls
-- [x] SSH TCP/22 allowed
-- [x] HTTP TCP/80 allowed
-- [x] Other ADMIN-to-SERVER traffic blocked
-- [x] SERVER-initiated traffic to ADMIN blocked
-- [x] Stateful firewall behavior validated
+- [x] Stateful inter-network firewall policy
+- [x] ADMIN → SERVER SSH TCP/22 allowed
+- [x] ADMIN → SERVER HTTP TCP/80 allowed
+- [x] Other ADMIN → SERVER traffic blocked
+- [x] SERVER → ADMIN initiated connections blocked
+- [x] SERVER → Internet connectivity retained
+- [x] Firewall policy validation
 
 ### Phase 5 - Network Traffic Analysis 🚧
-- [ ] Wireshark capture
-- [ ] ARP analysis
-- [ ] ICMP analysis
-- [ ] DNS analysis
+- [ ] Wireshark
+- [ ] ARP
+- [ ] ICMP
+- [ ] DNS
 - [ ] TCP three-way handshake
-- [ ] HTTP analysis
-- [ ] Permitted vs. blocked traffic comparison
+- [ ] HTTP
+- [ ] SSH
+- [ ] Allowed vs. blocked traffic analysis
 
-### Future
-- [ ] Cloud infrastructure extension
+### Future - Cloud Infrastructure Extension
+- [ ] Select cloud platform
+- [ ] Virtual networking
+- [ ] Cloud Linux VM
+- [ ] Network security controls
+- [ ] Cloud storage
+- [ ] Monitoring and logging
+
 
 ## Skills Being Developed
 
