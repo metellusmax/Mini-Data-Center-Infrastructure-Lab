@@ -94,7 +94,7 @@ separately so the main README can remain concise and easy to navigate.
 
 ### Troubleshooting
 
-- [OPNsense WAN Interface Troubleshooting](Troubleshooting/OPNsense-WAN-Interface.md)
+- [OPNsense WAN Interface Troubleshooting](Troubleshooting/opnsense-wan-interface.md)
 - [Nginx Web Service Outage](Troubleshooting/nginx-service-outage.md)
   
 ## Completed Work
