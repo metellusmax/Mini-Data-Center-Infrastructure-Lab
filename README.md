@@ -90,12 +90,12 @@ separately so the main README can remain concise and easy to navigate.
 
 ### Linux Administration
 
-- [Linux Secondary Storage Configuration](Linux/Storage-Configuration.md)
+- [Linux Secondary Storage Configuration](Linux/storage-configuration.md)
 
 ### Troubleshooting
 
 - [OPNsense WAN Interface Troubleshooting](Troubleshooting/OPNsense-WAN-Interface.md)
-- [Nginx Web Service Outage](Troubleshooting/Nginx-Service-Outage.md)
+- [Nginx Web Service Outage](Troubleshooting/nginx-service-outage.md)
   
 ## Completed Work
 
