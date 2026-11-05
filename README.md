@@ -202,48 +202,49 @@ This exercise helped reinforce the relationship between:
 
 **Disk → Partition → Filesystem → Mount Point → Persistent Storage**
 
-## Project Roadmap
+
+## Project Progress
 
 ### Phase 1 - Core Infrastructure ✅
-- OPNsense
-- Ubuntu Server
-- Windows administration workstation
-- Networking
-- SSH
-- Nginx
+- [x] OPNsense firewall/router
+- [x] Ubuntu Server
+- [x] Windows administrative workstation
+- [x] DHCP, DNS, NAT, and Internet connectivity
+- [x] SSH and Nginx
 
-### Phase 2 - Linux Server Administration 🚧
-- Storage
-- CPU and memory inspection
-- Processes and services
-- Logs
-- Permissions
-- Resource monitoring
+### Phase 2 - Linux Server & Storage ✅
+- [x] Secondary virtual disk
+- [x] Disk partitioning
+- [x] ext4 filesystem
+- [x] `/data` mount
+- [x] Persistent mounting through `/etc/fstab`
 
-### Phase 3 - Network Segmentation
-- Management network
-- Server network
-- Inter-subnet routing
-- IP addressing plan
+### Phase 3 - Network Segmentation ✅
+- [x] Dedicated ADMIN network
+- [x] Dedicated SERVER network
+- [x] Additional OPNsense interface
+- [x] Static server addressing
+- [x] Inter-subnet routing
 
-### Phase 4 - Firewall Policy
-- Management-to-server access
-- Service-specific rules
-- Connectivity validation
+### Phase 4 - Firewall Policy ✅
+- [x] ADMIN-to-SERVER access controls
+- [x] SSH TCP/22 allowed
+- [x] HTTP TCP/80 allowed
+- [x] Other ADMIN-to-SERVER traffic blocked
+- [x] SERVER-initiated traffic to ADMIN blocked
+- [x] Stateful firewall behavior validated
 
-### Phase 5 - Network Analysis
-- Wireshark
-- ARP
-- ICMP
-- DNS
-- TCP handshake
-- HTTP
-- SSH traffic analysis
+### Phase 5 - Network Traffic Analysis 🚧
+- [ ] Wireshark capture
+- [ ] ARP analysis
+- [ ] ICMP analysis
+- [ ] DNS analysis
+- [ ] TCP three-way handshake
+- [ ] HTTP analysis
+- [ ] Permitted vs. blocked traffic comparison
 
-### Phase 6 - Cloud Extension
-Planned future expansion of the project into cloud infrastructure to
-compare traditional virtualized networking, compute, storage, and
-security concepts with cloud equivalents.
+### Future
+- [ ] Cloud infrastructure extension
 
 ## Skills Being Developed
 
