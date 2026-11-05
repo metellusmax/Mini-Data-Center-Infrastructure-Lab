@@ -100,5 +100,26 @@ SERVER interface.
 
 ## Future Architecture
 
+## Future Architecture
+
+The next stage of the project will extend the local virtual
+infrastructure into a cloud environment.
+
+The goal is to apply concepts developed in the VMware lab to cloud
+infrastructure, including:
+
+- Virtual networks and subnets
+- Cloud virtual machines
+- Network security controls
+- Linux server administration
+- Cloud storage
+- Routing and connectivity
+- Monitoring and logging
+
+The cloud phase will be designed as an extension of the existing lab
+rather than as a separate project, allowing traditional virtualized
+infrastructure concepts to be compared with their cloud equivalents.
+
+
 
 
