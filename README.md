@@ -1,6 +1,12 @@
 # Mini Data Center Infrastructure Lab
 
-> 🚧 **Project Status: Active / Work in Progress**
+🚧 **Project Status: Active / Work in Progress**
+
+**Current milestone:** Local infrastructure build complete through
+network segmentation, firewall policy, and packet-level traffic
+analysis.
+
+**Next:** Cloud infrastructure extension.
 
 ## Overview
 
@@ -92,6 +98,9 @@ separately so the main README can remain concise and easy to navigate.
 
 - [Linux Secondary Storage Configuration](Linux/storage-configuration.md)
 
+### Network Analysis
+- [Wireshark Traffic Analysis](Network-Analysis/Wireshark-Traffic-Analysis.md)
+
 ### Troubleshooting
 
 - [OPNsense WAN Interface Troubleshooting](Troubleshooting/Opnsense-wan-interface.md)
@@ -111,6 +120,9 @@ separately so the main README can remain concise and easy to navigate.
 - [x] Created dedicated ADMIN and SERVER networks
 - [x] Configured inter-subnet routing through OPNsense
 - [x] Validated Internet and DNS connectivity across segmented networks
+- [x] Captured and analyzed ARP, DNS, TCP, SSH, and HTTP traffic with Wireshark
+- [x] Compared permitted TCP connections against firewall-blocked traffic
+- [x] Validated segmented-network behavior at the packet level
 
 ### Firewall Policy
 - [x] Allowed ADMIN → SERVER SSH (TCP/22)
@@ -164,23 +176,32 @@ separately so the main README can remain concise and easy to navigate.
 - [x] Firewall policy validation
 
 ### Phase 5 - Network Traffic Analysis 🚧
-- [ ] Wireshark
-- [ ] ARP
-- [ ] ICMP
-- [ ] DNS
-- [ ] TCP three-way handshake
-- [ ] HTTP
-- [ ] SSH
-- [ ] Allowed vs. blocked traffic analysis
+- [x] Wireshark
+- [x] ARP
+- [x] ICMP
+- [x] DNS
+- [x] TCP three-way handshake
+- [x] HTTP
+- [x] SSH
+- [x] Allowed vs. blocked traffic analysis
 
-### Future - Cloud Infrastructure Extension
-- [ ] Select cloud platform
-- [ ] Virtual networking
-- [ ] Cloud Linux VM
-- [ ] Network security controls
-- [ ] Cloud storage
-- [ ] Monitoring and logging
+### Phase 6 - Microsoft Azure Cloud Extension 🚧
 
+The next phase will extend the infrastructure concepts developed in the
+local VMware environment into Microsoft Azure.
+- [ ] Create an Azure Resource Group for the lab
+- [ ] Create an Azure Virtual Network (VNet)
+- [ ] Design and configure Azure subnets
+- [ ] Deploy an Ubuntu Server virtual machine
+- [ ] Configure private IP addressing
+- [ ] Configure Network Security Groups (NSGs)
+- [ ] Restrict administrative access to required services
+- [ ] Add and configure an Azure managed data disk
+- [ ] Validate SSH and network connectivity
+- [ ] Configure Azure Monitor / virtual machine monitoring
+- [ ] Review network and system logs
+- [ ] Document the Azure architecture
+- [ ] Compare VMware infrastructure concepts with Azure equivalents
 
 ## Skills Being Developed
 
