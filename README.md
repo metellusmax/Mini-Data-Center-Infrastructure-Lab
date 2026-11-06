@@ -1,12 +1,18 @@
 # Mini Data Center Infrastructure Lab
 
-🚧 **Project Status: Active / Work in Progress**
+✅ **Project Status: Core Infrastructure Build Complete**
 
-**Current milestone:** Local infrastructure build complete through
-network segmentation, firewall policy, and packet-level traffic
-analysis.
+This project demonstrates the design, implementation, administration,
+and validation of a virtualized mini data center environment using
+VMware Workstation, OPNsense, Windows, and Ubuntu Server.
 
-**Next:** Cloud infrastructure extension.
+The completed environment includes Linux storage administration,
+network segmentation, inter-subnet routing, stateful firewall policy,
+remote server administration, infrastructure troubleshooting, and
+packet-level network analysis with Wireshark.
+
+Future infrastructure learning will continue in a separate Microsoft
+Azure cloud infrastructure project.
 
 ## Overview
 
@@ -15,13 +21,17 @@ mini data center environment built to develop practical infrastructure
 skills relevant to Data Center Technician, Infrastructure Support, and
 systems administration roles.
 
-The lab is built in VMware Workstation and currently includes an
-OPNsense firewall/router, Ubuntu Server, and a Windows administrative
-workstation.
+The environment was built in VMware Workstation using OPNsense,
+Windows 11, and Ubuntu Server.
 
-Rather than focusing only on deployment, this project documents the
-configuration, validation, troubleshooting, and administration of the
-environment.
+The project progressed from basic virtual networking into a segmented
+infrastructure environment incorporating Linux storage, inter-subnet
+routing, stateful firewall policy, remote administration, infrastructure
+troubleshooting, and packet-level network analysis.
+
+The focus of the project was not only deploying infrastructure, but
+understanding how the individual components interact and validating the
+environment through hands-on testing and troubleshooting.
 
 ## Lab Objectives
 
@@ -41,10 +51,8 @@ experience with:
 - Network segmentation
 - Packet analysis
 
-A future phase of the project will extend the environment into cloud
-infrastructure.
 
-## Current Environment
+## Environment
 
 | System | Role | Network |
 |---|---|---|
@@ -62,8 +70,9 @@ infrastructure.
 - Nginx
 - Linux ext4 storage
 - PowerShell
+- Wireshark
 
-## Current Architecture
+## Architecture
 
 The lab has evolved from a single flat LAN into separate ADMIN and
 SERVER networks routed and protected by OPNsense.
@@ -143,85 +152,84 @@ separately so the main README can remain concise and easy to navigate.
 ## Project Roadmap
 
 ### Phase 1 - Core Infrastructure ✅
-- [x] OPNsense firewall/router
-- [x] Ubuntu Server
-- [x] Windows administrative workstation
-- [x] DHCP, DNS, NAT, and Internet connectivity
-- [x] SSH and Nginx
+
+- [x] Deploy OPNsense firewall/router
+- [x] Deploy Ubuntu Server
+- [x] Deploy Windows administrative workstation
+- [x] Configure VMware virtual networking
+- [x] Configure DHCP and DNS
+- [x] Configure NAT and Internet connectivity
+- [x] Configure SSH remote administration
+- [x] Install and validate Nginx
 
 ### Phase 2 - Linux Server Administration & Storage ✅
-- [x] Linux resource and system inspection
-- [x] Secondary virtual disk
-- [x] Disk partitioning
-- [x] ext4 filesystem
-- [x] `/data` mount point
-- [x] Persistent mounting with `/etc/fstab`
-- [x] Reboot validation
+
+- [x] Inspect CPU, memory, storage, networking, and services
+- [x] Add a secondary 10 GB virtual disk
+- [x] Identify the new Linux block device
+- [x] Partition the secondary disk
+- [x] Create an ext4 filesystem
+- [x] Mount storage at `/data`
+- [x] Configure persistent mounting with `/etc/fstab`
+- [x] Validate storage persistence after reboot
 
 ### Phase 3 - Network Segmentation ✅
-- [x] Dedicated ADMIN network
-- [x] Dedicated SERVER network
-- [x] Additional OPNsense network interface
-- [x] Static server addressing
-- [x] Inter-subnet routing
-- [x] Internet and DNS validation
 
-### Phase 4 - Firewall Policy ✅
-- [x] Stateful inter-network firewall policy
-- [x] ADMIN → SERVER SSH TCP/22 allowed
-- [x] ADMIN → SERVER HTTP TCP/80 allowed
-- [x] Other ADMIN → SERVER traffic blocked
-- [x] SERVER → ADMIN initiated connections blocked
-- [x] SERVER → Internet connectivity retained
-- [x] Firewall policy validation
+- [x] Create dedicated ADMIN network
+- [x] Create dedicated SERVER network
+- [x] Add and identify an additional OPNsense network interface
+- [x] Configure static server addressing
+- [x] Configure inter-subnet routing
+- [x] Validate Internet and DNS connectivity from the SERVER network
+- [x] Validate ADMIN-to-SERVER routed connectivity
 
-### Phase 5 - Network Traffic Analysis 🚧
-- [x] Wireshark
-- [x] ARP
-- [x] ICMP
-- [x] DNS
-- [x] TCP three-way handshake
-- [x] HTTP
-- [x] SSH
-- [x] Allowed vs. blocked traffic analysis
+### Phase 4 - Stateful Firewall Policy ✅
 
-### Phase 6 - Microsoft Azure Cloud Extension 🚧
+- [x] Configure firewall policy between ADMIN and SERVER networks
+- [x] Allow ADMIN → SERVER SSH over TCP/22
+- [x] Allow ADMIN → SERVER HTTP over TCP/80
+- [x] Block other ADMIN → SERVER traffic
+- [x] Block SERVER-initiated connections into ADMIN
+- [x] Maintain SERVER → Internet connectivity
+- [x] Validate stateful return traffic
 
-The next phase will extend the infrastructure concepts developed in the
-local VMware environment into Microsoft Azure.
-- [ ] Create an Azure Resource Group for the lab
-- [ ] Create an Azure Virtual Network (VNet)
-- [ ] Design and configure Azure subnets
-- [ ] Deploy an Ubuntu Server virtual machine
-- [ ] Configure private IP addressing
-- [ ] Configure Network Security Groups (NSGs)
-- [ ] Restrict administrative access to required services
-- [ ] Add and configure an Azure managed data disk
-- [ ] Validate SSH and network connectivity
-- [ ] Configure Azure Monitor / virtual machine monitoring
-- [ ] Review network and system logs
-- [ ] Document the Azure architecture
-- [ ] Compare VMware infrastructure concepts with Azure equivalents
+### Phase 5 - Network Traffic Analysis ✅
 
-## Skills Being Developed
-
-- VMware Workstation
-- OPNsense
-- Ubuntu Server
-- Windows administration
-- Linux administration
-- TCP/IP
-- DHCP
-- DNS
-- NAT
-- Routing
-- SSH
-- HTTP
-- Linux filesystems
-- Infrastructure troubleshooting
+- [x] Capture traffic with Wireshark
+- [x] Analyze ARP and default-gateway resolution
+- [x] Analyze DNS name resolution
+- [x] Observe the TCP three-way handshake
+- [x] Analyze SSH traffic over TCP/22
+- [x] Analyze HTTP traffic over TCP/80
+- [x] Observe HTTP `GET` and `200 OK` responses
+- [x] Compare permitted TCP traffic with firewall-blocked TCP/443 traffic
+- [x] Validate network and firewall behavior at the packet level
 
 ---
 
-This repository documents a hands-on learning environment and will
-continue to evolve as additional infrastructure, networking, and cloud
-components are implemented.
+## Core Project Complete ✅
+
+The local Mini Data Center Infrastructure Lab is now considered complete.
+
+The project progressed from a basic virtual network into a segmented
+infrastructure environment with:
+
+- VMware virtualization
+- OPNsense routing and firewalling
+- Windows and Linux administration
+- DHCP, DNS, and NAT
+- Linux storage and filesystems
+- SSH and Nginx services
+- ADMIN and SERVER network segmentation
+- Inter-subnet routing
+- Stateful firewall access controls
+- Infrastructure troubleshooting
+- Wireshark packet analysis
+
+The next learning project will focus on Microsoft Azure cloud
+infrastructure and apply many of these same infrastructure concepts to
+cloud networking, virtual machines, storage, network security, and
+monitoring.
+
+
+
