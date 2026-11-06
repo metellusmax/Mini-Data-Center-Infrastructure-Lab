@@ -42,7 +42,7 @@ infrastructure.
 
 | System | Role | Network |
 |---|---|---|
-| OPNsense | Router, firewall, DNS, NAT | WAN / ADMIN / SERVER |
+| OPNsense | Router, firewall, DNS, NAT, DHCP | WAN / ADMIN / SERVER |
 | `admin-ws01` | Windows administrative workstation | ADMIN |
 | `ubuntu-srv01` | Linux application/server workload | SERVER |
 
