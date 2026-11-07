@@ -4,9 +4,6 @@
 
 **A virtualized enterprise-style lab for networking, systems administration, and infrastructure troubleshooting.**
 
-[![Status: Complete](https://img.shields.io/badge/status-core%20infrastructure%20complete-2ea44f?style=for-the-badge)](https://github.com/metellusmax/Mini-Data-Center-Infrastructure-Lab)
-[![Virtualization](https://img.shields.io/badge/platform-VMware%20Workstation-607d8b?style=for-the-badge)](https://github.com/metellusmax/Mini-Data-Center-Infrastructure-Lab)
-[![Networking](https://img.shields.io/badge/networking-segmented%20lab-2563eb?style=for-the-badge)](https://github.com/metellusmax/Mini-Data-Center-Infrastructure-Lab)
 
 [Explore the architecture](Architecture/Current-Architecture.md) · [Browse project documentation](#project-documentation)
 
