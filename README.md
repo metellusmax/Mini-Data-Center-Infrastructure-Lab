@@ -58,7 +58,7 @@ OPNsense routes between the ADMIN and SERVER networks and enforces stateful fire
 - Allow ADMIN-to-SERVER HTTP on TCP/80.
 - Block other ADMIN-to-SERVER traffic.
 - Block new connections initiated from SERVER to ADMIN.
-- Preserve SERVER-to-Internet access and stateful return traffic for permitted connections.
+- Preserve SERVER-to-Internet access 
 
 See the [current lab architecture](Architecture/Current-Architecture.md) for additional details.
 
@@ -83,7 +83,7 @@ See the [current lab architecture](Architecture/Current-Architecture.md) for add
 
 - Captured and analyzed ARP, DNS, TCP, SSH, and HTTP traffic with Wireshark.
 - Observed the TCP three-way handshake and HTTP `GET` and `200 OK` responses.
-- Compared permitted connections with traffic blocked by firewall policy, including TCP/443.
+- Compared permitted connections with traffic blocked by firewall policy
 - Documented infrastructure and service troubleshooting.
 
 ## Project Documentation 📚
@@ -98,7 +98,7 @@ See the [current lab architecture](Architecture/Current-Architecture.md) for add
 1. **Core infrastructure** — Deployed the virtual machines, configured virtual networking, DHCP, DNS, NAT, SSH, and Nginx.
 2. **Linux administration and storage** — Inspected system resources, added and formatted secondary storage, configured the persistent `/data` mount, and tested it after reboot.
 3. **Network segmentation** — Created the ADMIN and SERVER networks and configured and tested routed connectivity.
-4. **Firewall policy** — Allowed required SSH and HTTP access, blocked other ADMIN-to-SERVER traffic and new SERVER-initiated access to ADMIN, and verified stateful return traffic.
+4. **Firewall policy** — Allowed required SSH and HTTP access, blocked other ADMIN-to-SERVER traffic and new SERVER-initiated access to ADMIN.
 5. **Network traffic analysis** — Captured and examined traffic to validate network behavior and firewall policy at the packet level.
 
 ## Next Steps ➡️
