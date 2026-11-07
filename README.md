@@ -57,8 +57,8 @@ OPNsense routes between the ADMIN and SERVER networks and enforces stateful fire
 - Allow ADMIN-to-SERVER SSH on TCP/22.
 - Allow ADMIN-to-SERVER HTTP on TCP/80.
 - Block other ADMIN-to-SERVER traffic.
-- Block connections initiated from SERVER to ADMIN.
-- Preserve SERVER-to-Internet access and stateful return traffic.
+- Block new connections initiated from SERVER to ADMIN.
+- Preserve SERVER-to-Internet access and stateful return traffic for permitted connections.
 
 See the [current lab architecture](Architecture/Current-Architecture.md) for additional details.
 
@@ -98,7 +98,7 @@ See the [current lab architecture](Architecture/Current-Architecture.md) for add
 1. **Core infrastructure** — Deployed the virtual machines, configured virtual networking, DHCP, DNS, NAT, SSH, and Nginx.
 2. **Linux administration and storage** — Inspected system resources, added and formatted secondary storage, configured the persistent `/data` mount, and tested it after reboot.
 3. **Network segmentation** — Created the ADMIN and SERVER networks and configured and tested routed connectivity.
-4. **Firewall policy** — Allowed required SSH and HTTP access, blocked other ADMIN-to-SERVER traffic and SERVER-initiated access to ADMIN, and verified stateful return traffic.
+4. **Firewall policy** — Allowed required SSH and HTTP access, blocked other ADMIN-to-SERVER traffic and new SERVER-initiated access to ADMIN, and verified stateful return traffic.
 5. **Network traffic analysis** — Captured and examined traffic to validate network behavior and firewall policy at the packet level.
 
 ## Next Steps ➡️
