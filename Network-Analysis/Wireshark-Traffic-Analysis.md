@@ -40,8 +40,6 @@ traffic between the systems is routed through OPNsense.
 
 <img width="955" height="481" alt="Screenshot 2026-11-06 133939" src="https://github.com/user-attachments/assets/ef905862-90db-4645-8c1c-7651c7ac4371" />
 
-)
-
 Before sending traffic to `ubuntu-srv01`, `admin-ws01` used ARP to
 identify the MAC address associated with its default gateway.
 
@@ -70,7 +68,6 @@ is the default gateway.
 ## 2. TCP Three-Way Handshake and SSH
 
 <img width="933" height="188" alt="Screenshot 2026-11-06 135356" src="https://github.com/user-attachments/assets/c960df94-6c25-493e-8022-0aa4429fb981" />
-
 
 An SSH connection from `admin-ws01` to `ubuntu-srv01` generated the TCP
 three-way handshake:
@@ -105,7 +102,6 @@ before SSH begins exchanging application data.
 ## 3. HTTP and Nginx
 
 <img width="955" height="372" alt="Screenshot 2026-11-06 135802" src="https://github.com/user-attachments/assets/4dc8431f-f2db-4873-ad86-d0d0fc2ecd6f" />
-
 
 An HTTP request was generated from `admin-ws01` to the Nginx service on
 `ubuntu-srv01`.
@@ -160,7 +156,6 @@ application request and response carried across that connection.
 <img width="1278" height="452" alt="Screenshot 2026-11-06 140344" src="https://github.com/user-attachments/assets/f86939a1-8ac8-49db-8479-d6c39951b03e" />
 <img width="661" height="622" alt="Screenshot 2026-11-06 140946" src="https://github.com/user-attachments/assets/89d98d52-e72a-4232-a9fc-9fc127cf029f" />
 
-
 DNS traffic was captured while `admin-ws01` resolved `ubuntu.com`.
 
 The workstation sent DNS queries to OPNsense:
@@ -202,7 +197,7 @@ TCP/22 - SSH
 TCP/80 - HTTP
 ```
 
-TCP/443 was not permitted.
+TCP/443 was not permitted by the lab's ADMIN-to-SERVER policy.
 
 A connection attempt to TCP/443 produced repeated SYN packets:
 
