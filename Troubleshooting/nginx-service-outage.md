@@ -19,15 +19,21 @@ The troubleshooting process demonstrated that successful connectivity
 to a server does not guarantee that every service running on the server
 is available.
 
+> **Historical environment note:** This incident documents the original,
+> pre-segmentation lab setup. At the time of this exercise,
+> `ubuntu-srv01` used `192.168.1.104/24` on the ADMIN-side
+> `192.168.1.0/24` network. In the current architecture, the server is on
+> the SERVER network at `10.10.20.10/24`.
+
 ---
 
 ## Environment
 
 **Server:** `ubuntu-srv01`  
-**Server IP:** `192.168.1.104/24`  
+**Server IP at time of incident:** `192.168.1.104/24`  
 **Operating System:** Ubuntu Server 24.04  
-**Network:** `192.168.1.0/24`  
-**Gateway:** `192.168.1.1`  
+**Network at time of incident:** `192.168.1.0/24` (original, pre-segmentation setup)  
+**Gateway at time of incident:** `192.168.1.1`  
 **Web Service:** Nginx  
 **Protocol:** HTTP  
 **Port:** TCP/80  
@@ -54,10 +60,7 @@ The first test checked basic connectivity to the Ubuntu server:
 ping 192.168.1.104
 ```
 
-
-The server successfully responded to the ICMP requests.
 <img width="797" height="270" alt="Screenshot 2026-10-31 143407" src="https://github.com/user-attachments/assets/456d27aa-12f9-4303-81af-3c978d26b768" />
-
 
 This established that:
 
@@ -77,8 +80,8 @@ The next step was testing the port used by HTTP:
 ```powershell
 Test-NetConnection 192.168.1.104 -Port 80
 ```
-<img width="785" height="292" alt="Screenshot 2026-10-31 143855" src="https://github.com/user-attachments/assets/33224578-c3fb-420f-a24c-893beca73d5f" />
 
+<img width="785" height="292" alt="Screenshot 2026-10-31 143855" src="https://github.com/user-attachments/assets/33224578-c3fb-420f-a24c-893beca73d5f" />
 
 The test showed that the host was reachable but TCP port 80 was not.
 
@@ -114,8 +117,8 @@ The service status showed:
 ```text
 Active: inactive (dead)
 ```
-<img width="1686" height="248" alt="Screenshot 2026-10-31 144350" src="https://github.com/user-attachments/assets/656c3d7d-0550-4d7c-9869-52b1633cb84a" />
 
+<img width="1686" height="248" alt="Screenshot 2026-10-31 144350" src="https://github.com/user-attachments/assets/656c3d7d-0550-4d7c-9869-52b1633cb84a" />
 
 This confirmed that the Ubuntu server itself remained online while the
 Nginx web service was not running.
@@ -153,6 +156,7 @@ Nginx now reported:
 ```text
 Active: active (running)
 ```
+
 <img width="1693" height="472" alt="Screenshot 2026-10-31 150205" src="https://github.com/user-attachments/assets/e34f2700-91ff-48d3-a4d6-d314dc9ec4e0" />
 
 ---
@@ -197,7 +201,6 @@ The Nginx webpage was also returned.
 
 <img width="1856" height="983" alt="Screenshot 2026-10-31 151043" src="https://github.com/user-attachments/assets/78408f09-a193-4dc1-bbc8-73e501b62d8f" />
 
-
 This confirmed that:
 
 ```text
@@ -226,7 +229,7 @@ Can the server be reached?
         v
 Is TCP/80 reachable?
         |
-       NO
+        NO
         |
         v
 Investigate Nginx
@@ -265,8 +268,6 @@ The most important lesson from this exercise was:
 A successful ping established that the host was reachable, but it did
 not establish that Nginx was functioning.
 
----
-
 ### Test the specific service
 
 Testing TCP port 80 provided more specific information than ping alone.
@@ -280,8 +281,6 @@ TCP/80 fails
 
 helped narrow the investigation from general network connectivity
 toward the service/application layer.
-
----
 
 ### Validate at multiple levels
 
