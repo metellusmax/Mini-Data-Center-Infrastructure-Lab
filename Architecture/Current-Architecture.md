@@ -90,8 +90,7 @@ OPNsense.
 
 Traffic initiated by `admin-ws01` enters OPNsense through the ADMIN
 interface, while traffic initiated by `ubuntu-srv01` enters through the
-SERVER interface. Stateful return traffic for permitted connections is
-allowed.
+SERVER interface. 
 
 ## Future Architecture
 
